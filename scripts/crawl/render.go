@@ -95,8 +95,11 @@ func renderIndex(refs []APIRef) string {
 			b.WriteString("| API | 설명 | 문서 |\n| --- | --- | --- |\n")
 			curGrp = r.GrpCd
 		}
+		// 링크 대상은 <> 로 감싼다 — 카테고리/파일명에 공백·괄호가 있어도
+		// (예: "정기보고서 주요정보/증자(감자) 현황.md") GitHub/CommonMark 에서
+		// 링크가 깨지지 않도록 한다.
 		link := fmt.Sprintf("%s/%s.md", sanitize(r.Category), sanitize(r.Name))
-		fmt.Fprintf(&b, "| %s | %s | [%s](%s) |\n",
+		fmt.Fprintf(&b, "| %s | %s | [%s](<%s>) |\n",
 			r.Name, strings.ReplaceAll(r.Desc, "|", `\|`), r.Name, link)
 	}
 	return strings.TrimRight(b.String(), "\n") + "\n"

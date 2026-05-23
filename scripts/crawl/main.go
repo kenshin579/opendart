@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"net/http"
 	"os"
 	"path/filepath"
 	"time"
@@ -22,7 +21,7 @@ func main() {
 }
 
 func run() error {
-	client := &http.Client{Timeout: 30 * time.Second}
+	client := newHTTPClient()
 	var done []APIRef
 	var failures []string
 

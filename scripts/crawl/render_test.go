@@ -43,7 +43,7 @@ func TestRenderIndex(t *testing.T) {
 	assert.Contains(t, out, "## 공시정보 (DS001)")
 	// apiId 오름차순 정렬: 공시검색(2019001) 이 기업개황(2019002) 보다 먼저
 	assert.Less(t, strings.Index(out, "공시검색"), strings.Index(out, "기업개황"))
-	assert.Contains(t, out, "[기업개황](공시정보/기업개황.md)")
+	assert.Contains(t, out, "[기업개황](<공시정보/기업개황.md>)")
 }
 
 func TestSanitizeReplacesPathChars(t *testing.T) {
