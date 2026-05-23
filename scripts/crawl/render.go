@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"sort"
 	"strings"
 )
 
@@ -70,4 +71,42 @@ func padRow(cells []string, ncol int) []string {
 		}
 	}
 	return out
+}
+
+// renderIndex 는 docs/api/README.md 본문을 생성한다. 카테고리(GrpCd) → apiId 순 정렬.
+func renderIndex(refs []APIRef) string {
+	sorted := append([]APIRef(nil), refs...)
+	sort.SliceStable(sorted, func(i, j int) bool {
+		if sorted[i].GrpCd != sorted[j].GrpCd {
+			return sorted[i].GrpCd < sorted[j].GrpCd
+		}
+		return sorted[i].APIID < sorted[j].APIID
+	})
+
+	var b strings.Builder
+	b.WriteString("# OpenDART API 문서\n\n")
+	b.WriteString("OpenDART 개발가이드(https://opendart.fss.or.kr)에서 크롤링한 API 명세입니다.\n\n")
+	b.WriteString("`go run ./scripts/crawl` 으로 재생성됩니다.\n")
+
+	curGrp := ""
+	for _, r := range sorted {
+		if r.GrpCd != curGrp {
+			fmt.Fprintf(&b, "\n## %s (%s)\n\n", r.Category, r.GrpCd)
+			b.WriteString("| API | 설명 | 문서 |\n| --- | --- | --- |\n")
+			curGrp = r.GrpCd
+		}
+		link := fmt.Sprintf("%s/%s.md", sanitize(r.Category), sanitize(r.Name))
+		fmt.Fprintf(&b, "| %s | %s | [%s](%s) |\n",
+			r.Name, strings.ReplaceAll(r.Desc, "|", `\|`), r.Name, link)
+	}
+	return strings.TrimRight(b.String(), "\n") + "\n"
+}
+
+// sanitize 는 파일/디렉토리명에 부적합한 문자를 치환한다.
+func sanitize(name string) string {
+	r := strings.NewReplacer(
+		"/", "_", "\\", "_", ":", "_", "*", "_",
+		"?", "_", `"`, "_", "<", "_", ">", "_", "|", "_",
+	)
+	return strings.TrimSpace(r.Replace(name))
 }
