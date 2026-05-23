@@ -17,9 +17,8 @@ const defaultCorpCacheTTL = 24 * time.Hour
 
 // Client 는 opendart 라이브러리의 단일 진입점.
 type Client struct {
-	apiKey string
-	http   *httpclient.Client
-	corp   *corpcode.Cache
+	http *httpclient.Client
+	corp *corpcode.Cache
 
 	Disclosure *disclosure.Client // DS001 공시정보
 }
@@ -41,7 +40,7 @@ func NewClient(apiKey string, opts ...Option) (*Client, error) {
 		HTTPClient: cfg.httpClient,
 	})
 
-	c := &Client{apiKey: apiKey, http: hc}
+	c := &Client{http: hc}
 	c.Disclosure = disclosure.New(hc)
 
 	cacheDir := cfg.corpCacheDir

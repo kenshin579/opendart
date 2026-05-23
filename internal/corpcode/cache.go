@@ -72,7 +72,8 @@ func (c *Cache) ensure(ctx context.Context, force bool) error {
 }
 
 // obtain 은 신선한 캐시가 있으면 디스크에서, 아니면 fetch 후 저장한다.
-// fetch 실패 시 오래된 캐시라도 있으면 fallback.
+// fetch 실패 시 오래된 캐시라도 있으면 fallback 한다(가용성 우선). 이 경우 프로세스
+// 수명 동안 stale 데이터를 쓰며, 네트워크 회복 시 RefreshCorpCodes 로만 갱신된다.
 func (c *Cache) obtain(ctx context.Context, force bool) ([]byte, error) {
 	path := filepath.Join(c.dir, cacheFileName)
 	if !force {
@@ -148,14 +149,16 @@ func parseZip(zipBytes []byte) ([]Entry, error) {
 	return nil, fmt.Errorf("corpcode: no xml in zip")
 }
 
-// Entries 는 전체 엔트리를 반환한다.
+// Entries 는 전체 엔트리의 복사본을 반환한다 (호출자 변경이 내부 인덱스에 영향 없도록).
 func (c *Cache) Entries(ctx context.Context) ([]Entry, error) {
 	if err := c.ensure(ctx, false); err != nil {
 		return nil, err
 	}
 	c.mu.Lock()
 	defer c.mu.Unlock()
-	return c.entries, nil
+	out := make([]Entry, len(c.entries))
+	copy(out, c.entries)
+	return out, nil
 }
 
 // ByStockCode 는 종목코드로 엔트리를 찾는다.
