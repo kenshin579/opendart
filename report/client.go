@@ -47,7 +47,7 @@ type listResponse[T any] struct {
 	List []T `json:"list"`
 }
 
-// getList 는 공통 list 조회 헬퍼. status 검사 후 list 만 반환한다.
+// getList 는 공통 list 조회 헬퍼. GetJSON 의 status 검사를 거친 뒤 list 만 반환한다.
 // 조회 데이터 없음(013)은 httpclient 가 ErrNoData 로 변환한다.
 func getList[T any](ctx context.Context, hc *httpclient.Client, path string, p ReportParams) ([]T, error) {
 	var resp listResponse[T]
