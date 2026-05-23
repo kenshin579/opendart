@@ -35,3 +35,31 @@ func TestCommercialPaperBalance(t *testing.T) {
 	assert.Equal(t, "미상환잔액", items[0].RemndrExprtn1)
 	assert.Equal(t, "-", items[0].Yy3Excess)
 }
+
+func TestShortTermBondBalance(t *testing.T) {
+	c := newTestClient(t, map[string]string{"/api/srtpdPsndbtNrdmpBlce.json": "srtpdPsndbtNrdmpBlce.json"})
+	items, err := c.ShortTermBondBalance(context.Background(), ReportParams{CorpCode: "00126380", BsnsYear: "2023", ReprtCode: AnnualReport})
+	require.NoError(t, err)
+	require.Len(t, items, 1)
+	assert.Equal(t, "미상환잔액", items[0].RemndrExprtn1)
+	assert.Equal(t, "-", items[0].IsuLmt)
+	assert.Equal(t, "-", items[0].RemndrLmt)
+}
+
+func TestHybridSecuritiesBalance(t *testing.T) {
+	c := newTestClient(t, map[string]string{"/api/newCaplScritsNrdmpBlce.json": "newCaplScritsNrdmpBlce.json"})
+	items, err := c.HybridSecuritiesBalance(context.Background(), ReportParams{CorpCode: "00126380", BsnsYear: "2023", ReprtCode: AnnualReport})
+	require.NoError(t, err)
+	require.Len(t, items, 1)
+	assert.Equal(t, "공모", items[0].RemndrExprtn2)
+	assert.Equal(t, "-", items[0].Yy30Excess)
+}
+
+func TestContingentCapitalBalance(t *testing.T) {
+	c := newTestClient(t, map[string]string{"/api/cndlCaplScritsNrdmpBlce.json": "cndlCaplScritsNrdmpBlce.json"})
+	items, err := c.ContingentCapitalBalance(context.Background(), ReportParams{CorpCode: "00126380", BsnsYear: "2023", ReprtCode: AnnualReport})
+	require.NoError(t, err)
+	require.Len(t, items, 1)
+	assert.Equal(t, "미상환잔액", items[0].RemndrExprtn1)
+	assert.Equal(t, "-", items[0].Yy10ExcessYy20Below)
+}
