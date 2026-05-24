@@ -1,0 +1,21 @@
+{
+    "status": "000",
+    "message": "정상",
+    "list": [
+        {
+            "rcept_no": "20240524000517",
+            "rcept_dt": "2024-05-24",
+            "corp_code": "00126380",
+            "corp_name": "삼성전자",
+            "report_tp": "일반",
+            "repror": "삼성물산",
+            "stkqy": "1,199,285,813",
+            "stkqy_irds": "-205,875",
+            "stkrt": "20.09",
+            "stkrt_irds": "-0.00",
+            "ctr_stkqy": "97,526,980",
+            "ctr_stkrt": "1.63",
+            "report_resn": "특별관계자 및 보유주식수 변동"
+        }
+    ]
+}
