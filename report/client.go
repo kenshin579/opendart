@@ -41,20 +41,9 @@ func (p ReportParams) toMap() map[string]string {
 	}
 }
 
-// listResponse 는 DS002 공통 list 응답 envelope.
-type listResponse[T any] struct {
-	httpclient.Envelope
-	List []T `json:"list"`
-}
-
 // getListParams 는 raw 파라미터 맵으로 list 를 조회하는 코어 헬퍼.
-// GetJSON 의 status 검사를 거친 뒤 list 만 반환한다(013은 httpclient 가 ErrNoData 로 변환).
 func getListParams[T any](ctx context.Context, hc *httpclient.Client, path string, params map[string]string) ([]T, error) {
-	var resp listResponse[T]
-	if err := hc.GetJSON(ctx, path, params, &resp); err != nil {
-		return nil, err
-	}
-	return resp.List, nil
+	return httpclient.GetList[T](ctx, hc, path, params)
 }
 
 // getList 는 ReportParams 기반 thin wrapper.
