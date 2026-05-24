@@ -27,3 +27,23 @@ func TestConvertibleBondIssuance(t *testing.T) {
 	assert.Equal(t, "10,500", got.ActMktprcflCvprcLwtrsprc)
 	assert.Equal(t, "미해당", got.FtcSttAtn)
 }
+
+func TestBondWithWarrantIssuance(t *testing.T) {
+	c := newTestClient(t, map[string]string{
+		"/api/bdwtIsDecsn.json": "bdwtIsDecsn.json",
+	})
+
+	items, err := c.BondWithWarrantIssuance(context.Background(), MaterialParams{CorpCode: "00164779", BgnDe: "20230101", EndDe: "20231231"})
+	require.NoError(t, err)
+	require.Len(t, items, 1)
+
+	got := items[0]
+	assert.Equal(t, "20230910000222", got.RceptNo)
+	assert.Equal(t, "8,000", got.ExPrc)
+	assert.Equal(t, "분리형", got.BdwtDivAtn)
+	assert.Equal(t, "2024년 09월 12일", got.ExpdBgd)
+	assert.Equal(t, "2,500,000", got.NstkIsstkCnt)
+	assert.Equal(t, "20,000,000,000", got.BdFta)
+	assert.Equal(t, "미제출", got.RsSmAtn)
+	assert.Equal(t, "미해당", got.FtcSttAtn)
+}
