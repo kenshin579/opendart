@@ -1,0 +1,30 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20230420000222", "corp_cls": "Y", "corp_code": "00126380", "corp_name": "테스트주식교환이전",
+      "extr_sen": "주식의 포괄적 교환", "extr_stn": "완전자회사",
+      "extr_tgcmp_cmpnm": "대상법인", "extr_tgcmp_rp": "홍길동", "extr_tgcmp_mbsn": "소프트웨어", "extr_tgcmp_rl_cmpn": "특수관계 없음",
+      "extr_tgcmp_tisstk_ostk": "1,000,000", "extr_tgcmp_tisstk_cstk": "-",
+      "rbsnfdtl_tast": "500,000,000,000", "rbsnfdtl_tdbt": "200,000,000,000", "rbsnfdtl_teqt": "300,000,000,000", "rbsnfdtl_cpt": "50,000,000,000",
+      "extr_rt": "1:0.5", "extr_rt_bs": "본질가치 평가",
+      "exevl_atn": "예", "exevl_bs_rs": "자본시장법 제165조의4", "exevl_intn": "삼일회계법인", "exevl_pd": "2023년 03월", "exevl_op": "적정",
+      "extr_pp": "경영 효율화",
+      "extrsc_extrctrd": "2023년 04월 20일", "extrsc_shddstd": "2023년 05월 10일",
+      "extrsc_shclspd_bgd": "2023년 05월 11일", "extrsc_shclspd_edd": "2023년 05월 15일",
+      "extrsc_extrop_rcpd_bgd": "2023년 05월 16일", "extrsc_extrop_rcpd_edd": "2023년 06월 05일",
+      "extrsc_gmtsck_prd": "2023년 06월 10일",
+      "extrsc_aprskh_expd_bgd": "2023년 06월 10일", "extrsc_aprskh_expd_edd": "2023년 06월 30일",
+      "extrsc_osprpd_bgd": "2023년 07월 01일", "extrsc_osprpd_edd": "2023년 07월 14일",
+      "extrsc_trspprpd": "2023년 07월 13일 ~ 2023년 07월 28일", "extrsc_trspprpd_bgd": "2023년 07월 13일", "extrsc_trspprpd_edd": "2023년 07월 28일",
+      "extrsc_extrdt": "2023년 07월 15일", "extrsc_nstkdlprd": "2023년 07월 28일", "extrsc_nstklstprd": "2023년 07월 29일",
+      "atextr_cpcmpnm": "테스트주식교환이전",
+      "aprskh_plnprc": "65,000", "aprskh_pym_plpd_mth": "2023년 07월, 현금", "aprskh_lmt": "-", "aprskh_ctref": "-",
+      "bdlst_atn": "아니오", "otcpr_bdlst_sf_atn": "해당없음",
+      "bddd": "2023년 04월 20일", "od_a_at_t": "3", "od_a_at_b": "0", "adt_a_atn": "1",
+      "popt_ctr_atn": "아니오", "popt_ctr_cn": "-",
+      "rs_sm_atn": "제출", "ex_sm_r": "-"
+    }
+  ]
+}
