@@ -262,3 +262,51 @@ type OtherCorpStockAcquisitionItem struct {
 func (c *Client) OtherCorpStockAcquisition(ctx context.Context, p MaterialParams) ([]OtherCorpStockAcquisitionItem, error) {
 	return httpclient.GetList[OtherCorpStockAcquisitionItem](ctx, c.http, "/api/otcprStkInvscrInhDecsn.json", p.toMap())
 }
+
+// OtherCorpStockTransferItem 은 타법인 주식 및 출자증권 양도결정 (otcprStkInvscrTrfDecsn) 한 건.
+type OtherCorpStockTransferItem struct {
+	RceptNo       string `json:"rcept_no"`       // 접수번호
+	CorpCls       string `json:"corp_cls"`       // 법인구분 (Y/K/N/E)
+	CorpCode      string `json:"corp_code"`      // 고유번호
+	CorpName      string `json:"corp_name"`      // 회사명
+	IscmpCmpnm    string `json:"iscmp_cmpnm"`    // 발행회사(회사명)
+	IscmpNt       string `json:"iscmp_nt"`       // 발행회사(국적)
+	IscmpRp       string `json:"iscmp_rp"`       // 발행회사(대표자)
+	IscmpCpt      string `json:"iscmp_cpt"`      // 발행회사(자본금(원))
+	IscmpRlCmpn   string `json:"iscmp_rl_cmpn"`  // 발행회사(회사와 관계)
+	IscmpTisstk   string `json:"iscmp_tisstk"`   // 발행회사(발행주식 총수(주))
+	IscmpMbsn     string `json:"iscmp_mbsn"`     // 발행회사(주요사업)
+	TrfdtlStkcnt  string `json:"trfdtl_stkcnt"`  // 양도내역(양도주식수(주))
+	TrfdtlTrfprc  string `json:"trfdtl_trfprc"`  // 양도내역(양도금액(원)(A))
+	TrfdtlTast    string `json:"trfdtl_tast"`    // 양도내역(총자산(원)(B))
+	TrfdtlTastVs  string `json:"trfdtl_tast_vs"` // 양도내역(총자산대비(%)(A/B))
+	TrfdtlEcpt    string `json:"trfdtl_ecpt"`    // 양도내역(자기자본(원)(C))
+	TrfdtlEcptVs  string `json:"trfdtl_ecpt_vs"` // 양도내역(자기자본대비(%)(A/C))
+	AttrfOwstkcnt string `json:"attrf_owstkcnt"` // 양도후 소유주식수 및 지분비율(소유주식수(주))
+	AttrfEqrt     string `json:"attrf_eqrt"`     // 양도후 소유주식수 및 지분비율(지분비율(%))
+	TrfPp         string `json:"trf_pp"`         // 양도목적
+	TrfPrd        string `json:"trf_prd"`        // 양도예정일자
+	DlptnCmpnm    string `json:"dlptn_cmpnm"`    // 거래상대방(회사명/성명)
+	DlptnCpt      string `json:"dlptn_cpt"`      // 거래상대방(자본금(원))
+	DlptnMbsn     string `json:"dlptn_mbsn"`     // 거래상대방(주요사업)
+	DlptnHoadd    string `json:"dlptn_hoadd"`    // 거래상대방(본점소재지(주소))
+	DlptnRlCmpn   string `json:"dlptn_rl_cmpn"`  // 거래상대방(회사와의 관계)
+	DlPym         string `json:"dl_pym"`         // 거래대금지급
+	ExevlAtn      string `json:"exevl_atn"`      // 외부평가에 관한 사항(외부평가 여부)
+	ExevlBsRs     string `json:"exevl_bs_rs"`    // 외부평가에 관한 사항(근거 및 사유)
+	ExevlIntn     string `json:"exevl_intn"`     // 외부평가에 관한 사항(외부평가기관의 명칭)
+	ExevlPd       string `json:"exevl_pd"`       // 외부평가에 관한 사항(외부평가 기간)
+	ExevlOp       string `json:"exevl_op"`       // 외부평가에 관한 사항(외부평가 의견)
+	Bddd          string `json:"bddd"`           // 이사회결의일(결정일)
+	OdAAtT        string `json:"od_a_at_t"`      // 사외이사 참석여부(참석(명))
+	OdAAtB        string `json:"od_a_at_b"`      // 사외이사 참석여부(불참(명))
+	AdtAAtn       string `json:"adt_a_atn"`      // 감사(사외이사가 아닌 감사위원) 참석여부
+	FtcSttAtn     string `json:"ftc_stt_atn"`    // 공정거래위원회 신고대상 여부
+	PoptCtrAtn    string `json:"popt_ctr_atn"`   // 풋옵션 등 계약 체결여부
+	PoptCtrCn     string `json:"popt_ctr_cn"`    // 계약내용
+}
+
+// OtherCorpStockTransfer 는 타법인 주식 및 출자증권 양도결정(주요사항보고서)을 조회한다.
+func (c *Client) OtherCorpStockTransfer(ctx context.Context, p MaterialParams) ([]OtherCorpStockTransferItem, error) {
+	return httpclient.GetList[OtherCorpStockTransferItem](ctx, c.http, "/api/otcprStkInvscrTrfDecsn.json", p.toMap())
+}
