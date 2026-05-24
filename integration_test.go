@@ -113,3 +113,15 @@ func TestIntegration_XbrlTaxonomy(t *testing.T) {
 	require.NoError(t, err)
 	require.NotEmpty(t, items)
 }
+
+func TestIntegration_MajorStockReports(t *testing.T) {
+	c, err := NewClientFromEnv(WithCorpCodeCacheDir(t.TempDir()))
+	require.NoError(t, err)
+
+	corp, err := c.ResolveCorpCode(context.Background(), "005930")
+	require.NoError(t, err)
+
+	items, err := c.Ownership.MajorStockReports(context.Background(), corp)
+	require.NoError(t, err)
+	require.NotEmpty(t, items)
+}
