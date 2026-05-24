@@ -1,0 +1,28 @@
+{
+    "status": "000",
+    "message": "정상",
+    "list": [
+        {
+            "rcept_no": "20240312000736",
+            "corp_cls": "Y",
+            "corp_code": "00126380",
+            "corp_name": "삼성전자",
+            "inv_prm": "삼성전기㈜",
+            "frst_acqs_de": "1977.01.01",
+            "invstmnt_purps": "경영참여",
+            "frst_acqs_amount": "250,000,000",
+            "bsis_blce_qy": "17,693,000",
+            "bsis_blce_qota_rt": "23.7",
+            "bsis_blce_acntbk_amount": "445,244,000,000",
+            "incrs_dcrs_acqs_dsps_qy": "-",
+            "incrs_dcrs_acqs_dsps_amount": "-",
+            "incrs_dcrs_evl_lstmn": "-",
+            "trmend_blce_qy": "17,693,000",
+            "trmend_blce_qota_rt": "23.7",
+            "trmend_blce_acntbk_amount": "445,244,000,000",
+            "recent_bsns_year_fnnr_sttus_tot_assets": "11,657,872,000,000",
+            "recent_bsns_year_fnnr_sttus_thstrm_ntpf": "450,482,000,000",
+            "stlm_dt": "2023-12-31"
+        }
+    ]
+}
