@@ -1,0 +1,29 @@
+{
+    "status": "000",
+    "message": "정상",
+    "list": [
+        {
+            "rcept_no": "20240312000736",
+            "reprt_code": "11011",
+            "bsns_year": "2023",
+            "corp_code": "00126380",
+            "stock_code": "005930",
+            "fs_div": "CFS",
+            "fs_nm": "연결재무제표",
+            "sj_div": "BS",
+            "sj_nm": "재무상태표",
+            "account_nm": "유동자산",
+            "thstrm_nm": "제 55 기",
+            "thstrm_dt": "2023.12.31 현재",
+            "thstrm_amount": "195,936,557,000,000",
+            "frmtrm_nm": "제 54 기",
+            "frmtrm_dt": "2022.12.31 현재",
+            "frmtrm_amount": "218,470,581,000,000",
+            "bfefrmtrm_nm": "제 53 기",
+            "bfefrmtrm_dt": "2021.12.31 현재",
+            "bfefrmtrm_amount": "218,163,185,000,000",
+            "ord": "1",
+            "currency": "KRW"
+        }
+    ]
+}
