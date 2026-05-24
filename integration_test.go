@@ -8,6 +8,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
+	"github.com/kenshin579/opendart/material"
 	"github.com/kenshin579/opendart/report"
 )
 
@@ -122,6 +123,19 @@ func TestIntegration_MajorStockReports(t *testing.T) {
 	require.NoError(t, err)
 
 	items, err := c.Ownership.MajorStockReports(context.Background(), corp)
+	require.NoError(t, err)
+	require.NotEmpty(t, items)
+}
+
+func TestIntegration_DefaultOccurrences(t *testing.T) {
+	c, err := NewClientFromEnv(WithCorpCodeCacheDir(t.TempDir()))
+	require.NoError(t, err)
+
+	items, err := c.Material.DefaultOccurrences(context.Background(), material.MaterialParams{
+		CorpCode: "00126089", // DH오토넥스 (실제 부도 사례)
+		BgnDe:    "20230101",
+		EndDe:    "20231231",
+	})
 	require.NoError(t, err)
 	require.NotEmpty(t, items)
 }
