@@ -62,6 +62,37 @@ type MergerRegistration struct {
 	PartyCompanies   []RestructuringPartyCompanyItem   // 당사회사에관한사항
 }
 
+// DivisionRegistration 은 분할 증권신고서(dvRs)의 그룹별 항목.
+type DivisionRegistration struct {
+	General          []RestructuringGeneralItem        // 일반사항
+	IssuedSecurities []RestructuringIssuedSecurityItem // 발행증권
+	PartyCompanies   []RestructuringPartyCompanyItem   // 당사회사에관한사항
+}
+
+// Division 은 분할 증권신고서(DS006)를 조회한다.
+func (c *Client) Division(ctx context.Context, p Params) (*DivisionRegistration, error) {
+	groups, err := httpclient.GetGroups(ctx, c.http, "/api/dvRs.json", p.toMap())
+	if err != nil {
+		return nil, err
+	}
+	out := &DivisionRegistration{}
+	for _, g := range groups {
+		var derr error
+		switch g.Title {
+		case "일반사항":
+			derr = json.Unmarshal(g.List, &out.General)
+		case "발행증권":
+			derr = json.Unmarshal(g.List, &out.IssuedSecurities)
+		case "당사회사에관한사항":
+			derr = json.Unmarshal(g.List, &out.PartyCompanies)
+		}
+		if derr != nil {
+			return nil, derr
+		}
+	}
+	return out, nil
+}
+
 // Merger 는 합병 증권신고서(DS006)를 조회한다.
 func (c *Client) Merger(ctx context.Context, p Params) (*MergerRegistration, error) {
 	groups, err := httpclient.GetGroups(ctx, c.http, "/api/mgRs.json", p.toMap())
