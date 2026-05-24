@@ -20,3 +20,16 @@ func TestBusinessAcquisition(t *testing.T) {
 	assert.Equal(t, "삼일회계법인", got.ExevlIntn)
 	assert.Equal(t, "미해당", got.FtcSttAtn)
 }
+
+func TestBusinessTransfer(t *testing.T) {
+	c := newTestClient(t, map[string]string{"/api/bsnTrfDecsn.json": "bsnTrfDecsn.json"})
+	items, err := c.BusinessTransfer(context.Background(), MaterialParams{CorpCode: "00126380", BgnDe: "20230101", EndDe: "20231231"})
+	require.NoError(t, err)
+	require.Len(t, items, 1)
+	got := items[0]
+	assert.Equal(t, "20230510000222", got.RceptNo)
+	assert.Equal(t, "디스플레이 사업부문", got.TrfBsn)
+	assert.Equal(t, "300,000,000,000", got.TrfPrc)
+	assert.Equal(t, "안진회계법인", got.ExevlIntn)
+	assert.Equal(t, "미해당", got.FtcSttAtn)
+}
