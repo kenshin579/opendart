@@ -1,0 +1,20 @@
+{
+    "status": "000",
+    "message": "정상",
+    "list": [
+        {
+            "rcept_no": "20240529000354",
+            "rcept_dt": "2024-05-29",
+            "corp_code": "00126380",
+            "corp_name": "삼성전자",
+            "repror": "손준호",
+            "isu_exctv_rgist_at": "비등기임원",
+            "isu_exctv_ofcps": "상무",
+            "isu_main_shrholdr": "-",
+            "sp_stock_lmp_cnt": "0",
+            "sp_stock_lmp_irds_cnt": "-1,400",
+            "sp_stock_lmp_rate": "0.00",
+            "sp_stock_lmp_irds_rate": "0.00"
+        }
+    ]
+}
