@@ -104,3 +104,12 @@ func TestIntegration_SingleAccount(t *testing.T) {
 	require.NoError(t, err)
 	require.NotEmpty(t, items)
 }
+
+func TestIntegration_XbrlTaxonomy(t *testing.T) {
+	c, err := NewClientFromEnv(WithCorpCodeCacheDir(t.TempDir()))
+	require.NoError(t, err)
+
+	items, err := c.Report.XbrlTaxonomy(context.Background(), "BS1")
+	require.NoError(t, err)
+	require.NotEmpty(t, items)
+}
