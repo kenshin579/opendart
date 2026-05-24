@@ -59,3 +59,16 @@ func TestTangibleAssetTransfer(t *testing.T) {
 	assert.Equal(t, "한국감정원", got.ExevlIntn)
 	assert.Equal(t, "미해당", got.FtcSttAtn)
 }
+
+func TestOtherCorpStockAcquisition(t *testing.T) {
+	c := newTestClient(t, map[string]string{"/api/otcprStkInvscrInhDecsn.json": "otcprStkInvscrInhDecsn.json"})
+	items, err := c.OtherCorpStockAcquisition(context.Background(), MaterialParams{CorpCode: "00126380", BgnDe: "20230101", EndDe: "20231231"})
+	require.NoError(t, err)
+	require.Len(t, items, 1)
+	got := items[0]
+	assert.Equal(t, "20230810000555", got.RceptNo)
+	assert.Equal(t, "대상회사", got.IscmpCmpnm)
+	assert.Equal(t, "1,000,000", got.InhdtlStkcnt)
+	assert.Equal(t, "50.0", got.AtinhEqrt)
+	assert.Equal(t, "미해당", got.FtcSttAtn)
+}

@@ -210,3 +210,55 @@ type TangibleAssetTransferItem struct {
 func (c *Client) TangibleAssetTransfer(ctx context.Context, p MaterialParams) ([]TangibleAssetTransferItem, error) {
 	return httpclient.GetList[TangibleAssetTransferItem](ctx, c.http, "/api/tgastTrfDecsn.json", p.toMap())
 }
+
+// OtherCorpStockAcquisitionItem 은 타법인 주식 및 출자증권 양수결정 (otcprStkInvscrInhDecsn) 한 건.
+type OtherCorpStockAcquisitionItem struct {
+	RceptNo         string `json:"rcept_no"`           // 접수번호
+	CorpCls         string `json:"corp_cls"`           // 법인구분 (Y/K/N/E)
+	CorpCode        string `json:"corp_code"`          // 고유번호
+	CorpName        string `json:"corp_name"`          // 회사명
+	IscmpCmpnm      string `json:"iscmp_cmpnm"`        // 발행회사(회사명)
+	IscmpNt         string `json:"iscmp_nt"`           // 발행회사(국적)
+	IscmpRp         string `json:"iscmp_rp"`           // 발행회사(대표자)
+	IscmpCpt        string `json:"iscmp_cpt"`          // 발행회사(자본금(원))
+	IscmpRlCmpn     string `json:"iscmp_rl_cmpn"`      // 발행회사(회사와 관계)
+	IscmpTisstk     string `json:"iscmp_tisstk"`       // 발행회사(발행주식 총수(주))
+	IscmpMbsn       string `json:"iscmp_mbsn"`         // 발행회사(주요사업)
+	L6mTpaNstkaqAtn string `json:"l6m_tpa_nstkaq_atn"` // 최근 6월 이내 제3자 배정에 의한 신주취득 여부
+	InhdtlStkcnt    string `json:"inhdtl_stkcnt"`      // 양수내역(양수주식수(주))
+	InhdtlInhprc    string `json:"inhdtl_inhprc"`      // 양수내역(양수금액(원)(A))
+	InhdtlTast      string `json:"inhdtl_tast"`        // 양수내역(총자산(원)(B))
+	InhdtlTastVs    string `json:"inhdtl_tast_vs"`     // 양수내역(총자산대비(%)(A/B))
+	InhdtlEcpt      string `json:"inhdtl_ecpt"`        // 양수내역(자기자본(원)(C))
+	InhdtlEcptVs    string `json:"inhdtl_ecpt_vs"`     // 양수내역(자기자본대비(%)(A/C))
+	AtinhOwstkcnt   string `json:"atinh_owstkcnt"`     // 양수후 소유주식수 및 지분비율(소유주식수(주))
+	AtinhEqrt       string `json:"atinh_eqrt"`         // 양수후 소유주식수 및 지분비율(지분비율(%))
+	InhPp           string `json:"inh_pp"`             // 양수목적
+	InhPrd          string `json:"inh_prd"`            // 양수예정일자
+	DlptnCmpnm      string `json:"dlptn_cmpnm"`        // 거래상대방(회사명/성명)
+	DlptnCpt        string `json:"dlptn_cpt"`          // 거래상대방(자본금(원))
+	DlptnMbsn       string `json:"dlptn_mbsn"`         // 거래상대방(주요사업)
+	DlptnHoadd      string `json:"dlptn_hoadd"`        // 거래상대방(본점소재지(주소))
+	DlptnRlCmpn     string `json:"dlptn_rl_cmpn"`      // 거래상대방(회사와의 관계)
+	DlPym           string `json:"dl_pym"`             // 거래대금지급
+	ExevlAtn        string `json:"exevl_atn"`          // 외부평가에 관한 사항(외부평가 여부)
+	ExevlBsRs       string `json:"exevl_bs_rs"`        // 외부평가에 관한 사항(근거 및 사유)
+	ExevlIntn       string `json:"exevl_intn"`         // 외부평가에 관한 사항(외부평가기관의 명칭)
+	ExevlPd         string `json:"exevl_pd"`           // 외부평가에 관한 사항(외부평가 기간)
+	ExevlOp         string `json:"exevl_op"`           // 외부평가에 관한 사항(외부평가 의견)
+	Bddd            string `json:"bddd"`               // 이사회결의일(결정일)
+	OdAAtT          string `json:"od_a_at_t"`          // 사외이사 참석여부(참석(명))
+	OdAAtB          string `json:"od_a_at_b"`          // 사외이사 참석여부(불참(명))
+	AdtAAtn         string `json:"adt_a_atn"`          // 감사(사외이사가 아닌 감사위원) 참석여부
+	BdlstAtn        string `json:"bdlst_atn"`          // 우회상장 해당 여부
+	N6mTpaiPlann    string `json:"n6m_tpai_plann"`     // 향후 6월이내 제3자배정 증자 등 계획
+	IscmpBdlstSfAtn string `json:"iscmp_bdlst_sf_atn"` // 발행회사(타법인)의 우회상장 요건 충족여부
+	FtcSttAtn       string `json:"ftc_stt_atn"`        // 공정거래위원회 신고대상 여부
+	PoptCtrAtn      string `json:"popt_ctr_atn"`       // 풋옵션 등 계약 체결여부
+	PoptCtrCn       string `json:"popt_ctr_cn"`        // 계약내용
+}
+
+// OtherCorpStockAcquisition 은 타법인 주식 및 출자증권 양수결정(주요사항보고서)을 조회한다.
+func (c *Client) OtherCorpStockAcquisition(ctx context.Context, p MaterialParams) ([]OtherCorpStockAcquisitionItem, error) {
+	return httpclient.GetList[OtherCorpStockAcquisitionItem](ctx, c.http, "/api/otcprStkInvscrInhDecsn.json", p.toMap())
+}
