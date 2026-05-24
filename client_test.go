@@ -18,6 +18,7 @@ func TestNewClient_WiresSubClients(t *testing.T) {
 	assert.NotNil(t, c.Disclosure)
 	assert.NotNil(t, c.Report)
 	assert.NotNil(t, c.Ownership)
+	assert.NotNil(t, c.Material)
 }
 
 func TestNewClientFromEnv(t *testing.T) {
