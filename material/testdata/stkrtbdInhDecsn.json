@@ -1,0 +1,18 @@
+{
+  "status": "000", "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20231010000777", "corp_cls": "Y", "corp_code": "00126380", "corp_name": "테스트사채권양수",
+      "stkrtbd_kndn": "전환사채", "tm": "5", "knd": "기명식 무보증 전환사채",
+      "bdiscmp_cmpnm": "발행회사", "bdiscmp_nt": "대한민국", "bdiscmp_rp": "이영희", "bdiscmp_cpt": "8,000,000,000", "bdiscmp_rl_cmpn": "특수관계 없음", "bdiscmp_tisstk": "1,500,000", "bdiscmp_mbsn": "바이오",
+      "l6m_tpa_nstkaq_atn": "아니오",
+      "inhdtl_bd_fta": "20,000,000,000", "inhdtl_inhprc": "20,000,000,000", "inhdtl_tast": "3,000,000,000,000", "inhdtl_tast_vs": "0.7", "inhdtl_ecpt": "2,000,000,000,000", "inhdtl_ecpt_vs": "1.0",
+      "inh_pp": "전략적 투자", "inh_prd": "2023년 11월 30일",
+      "dlptn_cmpnm": "매도자", "dlptn_cpt": "-", "dlptn_mbsn": "-", "dlptn_hoadd": "대전시 유성구", "dlptn_rl_cmpn": "특수관계 없음",
+      "dl_pym": "현금 지급",
+      "exevl_atn": "예", "exevl_bs_rs": "자본시장법", "exevl_intn": "삼일회계법인", "exevl_pd": "2023년 09월", "exevl_op": "적정",
+      "bddd": "2023년 10월 10일", "od_a_at_t": "3", "od_a_at_b": "0", "adt_a_atn": "1",
+      "ftc_stt_atn": "미해당", "popt_ctr_atn": "아니오", "popt_ctr_cn": "-"
+    }
+  ]
+}
