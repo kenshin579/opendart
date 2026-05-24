@@ -76,3 +76,22 @@ type OverseasDelistingDecisionItem struct {
 func (c *Client) OverseasDelistingDecision(ctx context.Context, p MaterialParams) ([]OverseasDelistingDecisionItem, error) {
 	return httpclient.GetList[OverseasDelistingDecisionItem](ctx, c.http, "/api/ovDlstDecsn.json", p.toMap())
 }
+
+// OverseasDelistingItem 은 해외 증권시장 주권등 상장폐지 (ovDlst) 한 건.
+type OverseasDelistingItem struct {
+	RceptNo        string `json:"rcept_no"`         // 접수번호
+	CorpCls        string `json:"corp_cls"`         // 법인구분 (Y/K/N/E)
+	CorpCode       string `json:"corp_code"`        // 고유번호
+	CorpName       string `json:"corp_name"`        // 회사명
+	LstexNt        string `json:"lstex_nt"`         // 상장거래소 및 소재국가
+	DlststkOstkCnt string `json:"dlststk_ostk_cnt"` // 상장폐지주식의 종류(보통주식(주))
+	DlststkEstkCnt string `json:"dlststk_estk_cnt"` // 상장폐지주식의 종류(기타주식(주))
+	Tredd          string `json:"tredd"`            // 매매거래종료일
+	DlstRs         string `json:"dlst_rs"`          // 폐지사유
+	Cfd            string `json:"cfd"`              // 확인일자
+}
+
+// OverseasDelisting 은 해외 증권시장 주권등 상장폐지(주요사항보고서)을 조회한다.
+func (c *Client) OverseasDelisting(ctx context.Context, p MaterialParams) ([]OverseasDelistingItem, error) {
+	return httpclient.GetList[OverseasDelistingItem](ctx, c.http, "/api/ovDlst.json", p.toMap())
+}
