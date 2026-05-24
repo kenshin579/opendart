@@ -45,3 +45,49 @@ func TestOutsideDirectorChanges(t *testing.T) {
 	assert.Equal(t, "11", items[0].DrctrCo)
 	assert.Equal(t, "6", items[0].OtcmpDrctrCo)
 }
+
+func TestDirectorAuditorApprovedCompensation(t *testing.T) {
+	c := newTestClient(t, map[string]string{"/api/drctrAdtAllMendngSttusGmtsckConfmAmount.json": "drctrAdtAllMendngSttusGmtsckConfmAmount.json"})
+	items, err := c.DirectorAuditorApprovedCompensation(context.Background(), ReportParams{CorpCode: "00126380", BsnsYear: "2023", ReprtCode: AnnualReport})
+	require.NoError(t, err)
+	require.Len(t, items, 1)
+	assert.Equal(t, "등기이사", items[0].Se)
+	assert.Equal(t, "5", items[0].Nmpr)
+}
+
+func TestDirectorAuditorTotalCompensation(t *testing.T) {
+	c := newTestClient(t, map[string]string{"/api/hmvAuditAllSttus.json": "hmvAuditAllSttus.json"})
+	items, err := c.DirectorAuditorTotalCompensation(context.Background(), ReportParams{CorpCode: "00126380", BsnsYear: "2023", ReprtCode: AnnualReport})
+	require.NoError(t, err)
+	require.Len(t, items, 1)
+	assert.Equal(t, "11", items[0].Nmpr)
+	assert.Equal(t, "23,227,000,000", items[0].MendngTotamt)
+}
+
+func TestDirectorAuditorCompensationByType(t *testing.T) {
+	c := newTestClient(t, map[string]string{"/api/drctrAdtAllMendngSttusMendngPymntamtTyCl.json": "drctrAdtAllMendngSttusMendngPymntamtTyCl.json"})
+	items, err := c.DirectorAuditorCompensationByType(context.Background(), ReportParams{CorpCode: "00126380", BsnsYear: "2023", ReprtCode: AnnualReport})
+	require.NoError(t, err)
+	require.Len(t, items, 1)
+	assert.Equal(t, "22,009,000,000", items[0].PymntTotamt)
+	assert.Equal(t, "4,402,000,000", items[0].Psn1AvrgPymntamt)
+}
+
+func TestIndividualDirectorAuditorCompensation(t *testing.T) {
+	c := newTestClient(t, map[string]string{"/api/hmvAuditIndvdlBySttus.json": "hmvAuditIndvdlBySttus.json"})
+	items, err := c.IndividualDirectorAuditorCompensation(context.Background(), ReportParams{CorpCode: "00126380", BsnsYear: "2023", ReprtCode: AnnualReport})
+	require.NoError(t, err)
+	require.Len(t, items, 1)
+	assert.Equal(t, "경계현", items[0].Nm)
+	assert.Equal(t, "2,403,000,000", items[0].MendngTotamt)
+}
+
+func TestIndividualTop5Compensation(t *testing.T) {
+	c := newTestClient(t, map[string]string{"/api/indvdlByPay.json": "indvdlByPay.json"})
+	items, err := c.IndividualTop5Compensation(context.Background(), ReportParams{CorpCode: "00126380", BsnsYear: "2023", ReprtCode: AnnualReport})
+	require.NoError(t, err)
+	require.Len(t, items, 1)
+	assert.Equal(t, "김기남", items[0].Nm)
+	assert.Equal(t, "고문", items[0].Ofcps)
+	assert.Equal(t, "17,265,000,000", items[0].MendngTotamt)
+}

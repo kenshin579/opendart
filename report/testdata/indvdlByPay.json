@@ -1,0 +1,17 @@
+{
+    "status": "000",
+    "message": "정상",
+    "list": [
+        {
+            "rcept_no": "20240312000736",
+            "corp_cls": "Y",
+            "corp_code": "00126380",
+            "corp_name": "삼성전자",
+            "nm": "김기남",
+            "ofcps": "고문",
+            "mendng_totamt": "17,265,000,000",
+            "mendng_totamt_ct_incls_mendng": "-",
+            "stlm_dt": "2023-12-31"
+        }
+    ]
+}

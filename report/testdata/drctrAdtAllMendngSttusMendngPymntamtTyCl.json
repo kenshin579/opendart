@@ -1,0 +1,25 @@
+{
+    "status": "000",
+    "message": "정상",
+    "list": [
+        {
+            "rcept_no": "20240312000736",
+            "corp_cls": "Y",
+            "corp_code": "00126380",
+            "corp_name": "삼성전자",
+            "se": "등기이사(사외이사, 감사위원회 위원 제외)",
+            "nmpr": "5",
+            "pymnt_totamt": "22,009,000,000",
+            "psn1_avrg_pymntamt": "4,402,000,000",
+            "rm": "-",
+            "stlm_dt": "2023-12-31",
+            "fscl_year": "-",
+            "stk_bsd_pd_mendng_totamt": "-",
+            "stk_opt_exrcsbl_qty": "-",
+            "stk_opt_unexrcsbl_qty": "-",
+            "stk_opt_rmn_blce": "-",
+            "othr_stk_bsd_cmpn_unpyd_qty": "-",
+            "othr_stk_bsd_cmpn_mkt_vl": "-"
+        }
+    ]
+}
