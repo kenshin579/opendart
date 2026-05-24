@@ -1,0 +1,23 @@
+{
+  "status": "000",
+  "message": "정상",
+  "list": [
+    {
+      "rcept_no": "20230410000111", "corp_cls": "Y", "corp_code": "00126380", "corp_name": "테스트영업양수",
+      "inh_bsn": "반도체 사업부문", "inh_bsn_mc": "메모리 반도체 제조", "inh_prc": "500,000,000,000", "absn_inh_atn": "아니오",
+      "ast_inh_bsn": "300,000,000,000", "ast_cmp_all": "3,000,000,000,000", "ast_rt": "10.0",
+      "sl_inh_bsn": "200,000,000,000", "sl_cmp_all": "2,000,000,000,000", "sl_rt": "10.0",
+      "dbt_inh_bsn": "100,000,000,000", "dbt_cmp_all": "1,000,000,000,000", "dbt_rt": "10.0",
+      "inh_pp": "사업 경쟁력 강화", "inh_af": "매출 증대 기대",
+      "inh_prd_ctr_cnsd": "2023년 04월 10일", "inh_prd_inh_std": "2023년 06월 30일",
+      "dlptn_cmpnm": "상대회사", "dlptn_cpt": "50,000,000,000", "dlptn_mbsn": "반도체", "dlptn_hoadd": "경기도 수원시", "dlptn_rl_cmpn": "특수관계 없음",
+      "inh_pym": "현금 지급",
+      "exevl_atn": "예", "exevl_bs_rs": "자본시장법 제165조의4", "exevl_intn": "삼일회계법인", "exevl_pd": "2023년 03월", "exevl_op": "적정",
+      "gmtsck_spd_atn": "예", "gmtsck_prd": "2023년 05월 30일",
+      "aprskh_plnprc": "70,000", "aprskh_pym_plpd_mth": "2023년 06월, 현금", "aprskh_lmt": "-", "aprskh_ctref": "-",
+      "bddd": "2023년 04월 10일", "od_a_at_t": "3", "od_a_at_b": "0", "adt_a_atn": "1",
+      "bdlst_atn": "아니오", "n6m_tpai_plann": "없음", "otcpr_bdlst_sf_atn": "해당없음",
+      "ftc_stt_atn": "미해당", "popt_ctr_atn": "아니오", "popt_ctr_cn": "-"
+    }
+  ]
+}

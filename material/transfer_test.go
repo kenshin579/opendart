@@ -1,0 +1,22 @@
+package material
+
+import (
+	"context"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+)
+
+func TestBusinessAcquisition(t *testing.T) {
+	c := newTestClient(t, map[string]string{"/api/bsnInhDecsn.json": "bsnInhDecsn.json"})
+	items, err := c.BusinessAcquisition(context.Background(), MaterialParams{CorpCode: "00126380", BgnDe: "20230101", EndDe: "20231231"})
+	require.NoError(t, err)
+	require.Len(t, items, 1)
+	got := items[0]
+	assert.Equal(t, "20230410000111", got.RceptNo)
+	assert.Equal(t, "반도체 사업부문", got.InhBsn)
+	assert.Equal(t, "500,000,000,000", got.InhPrc)
+	assert.Equal(t, "삼일회계법인", got.ExevlIntn)
+	assert.Equal(t, "미해당", got.FtcSttAtn)
+}
