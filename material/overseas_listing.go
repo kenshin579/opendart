@@ -53,3 +53,26 @@ type OverseasListingItem struct {
 func (c *Client) OverseasListing(ctx context.Context, p MaterialParams) ([]OverseasListingItem, error) {
 	return httpclient.GetList[OverseasListingItem](ctx, c.http, "/api/ovLst.json", p.toMap())
 }
+
+// OverseasDelistingDecisionItem 은 해외 증권시장 주권등 상장폐지 결정 (ovDlstDecsn) 한 건.
+type OverseasDelistingDecisionItem struct {
+	RceptNo        string `json:"rcept_no"`         // 접수번호
+	CorpCls        string `json:"corp_cls"`         // 법인구분 (Y/K/N/E)
+	CorpCode       string `json:"corp_code"`        // 고유번호
+	CorpName       string `json:"corp_name"`        // 회사명
+	DlststkOstkCnt string `json:"dlststk_ostk_cnt"` // 상장폐지주식 종류ㆍ수(주)(보통주식)
+	DlststkEstkCnt string `json:"dlststk_estk_cnt"` // 상장폐지주식 종류ㆍ수(주)(기타주식)
+	LstexNt        string `json:"lstex_nt"`         // 상장거래소(소재국가)
+	DlstrqPrd      string `json:"dlstrq_prd"`       // 폐지신청예정일자
+	DlstPrd        string `json:"dlst_prd"`         // 폐지(예정)일자
+	DlstRs         string `json:"dlst_rs"`          // 폐지사유
+	Bddd           string `json:"bddd"`             // 이사회결의일(확인일)
+	OdAAtT         string `json:"od_a_at_t"`        // 사외이사 참석여부(참석(명))
+	OdAAtB         string `json:"od_a_at_b"`        // 사외이사 참석여부(불참(명))
+	AdtAAtn        string `json:"adt_a_atn"`        // 감사(감사위원) 참석여부
+}
+
+// OverseasDelistingDecision 은 해외 증권시장 주권등 상장폐지 결정(주요사항보고서)을 조회한다.
+func (c *Client) OverseasDelistingDecision(ctx context.Context, p MaterialParams) ([]OverseasDelistingDecisionItem, error) {
+	return httpclient.GetList[OverseasDelistingDecisionItem](ctx, c.http, "/api/ovDlstDecsn.json", p.toMap())
+}

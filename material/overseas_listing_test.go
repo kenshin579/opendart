@@ -31,3 +31,15 @@ func TestOverseasListing(t *testing.T) {
 	assert.Equal(t, "TEST", got.StkCd)
 	assert.Equal(t, "2023년 10월 02일", got.Lstd)
 }
+
+func TestOverseasDelistingDecision(t *testing.T) {
+	c := newTestClient(t, map[string]string{"/api/ovDlstDecsn.json": "ovDlstDecsn.json"})
+	items, err := c.OverseasDelistingDecision(context.Background(), MaterialParams{CorpCode: "00126380", BgnDe: "20200101", EndDe: "20241231"})
+	require.NoError(t, err)
+	require.Len(t, items, 1)
+	got := items[0]
+	assert.Equal(t, "20241031000508", got.RceptNo)
+	assert.Equal(t, "38,685,850", got.DlststkEstkCnt)
+	assert.Equal(t, "룩셈부르크증권거래소에 상장된 주식예탁증서(DR) 우선주의 거래량 미미", got.DlstRs)
+	assert.Equal(t, "2024년 10월 31일", got.Bddd)
+}
