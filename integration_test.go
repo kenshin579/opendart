@@ -405,3 +405,51 @@ func TestIntegration_DepositaryReceipts(t *testing.T) {
 		require.NotEmpty(t, it.RceptNo)
 	}
 }
+
+func TestIntegration_Merger(t *testing.T) {
+	c, err := NewClientFromEnv(WithCorpCodeCacheDir(t.TempDir()))
+	require.NoError(t, err)
+	corp, err := c.ResolveCorpCode(context.Background(), "005930")
+	require.NoError(t, err)
+	res, err := c.Registration.Merger(context.Background(), registration.Params{CorpCode: corp, BgnDe: "20180101", EndDe: "20241231"})
+	if errors.Is(err, ErrNoData) {
+		t.Skip("해당 기간 합병 증권신고서 데이터 없음")
+	}
+	require.NoError(t, err)
+	require.NotNil(t, res)
+	for _, it := range res.General {
+		require.NotEmpty(t, it.RceptNo)
+	}
+}
+
+func TestIntegration_Division(t *testing.T) {
+	c, err := NewClientFromEnv(WithCorpCodeCacheDir(t.TempDir()))
+	require.NoError(t, err)
+	corp, err := c.ResolveCorpCode(context.Background(), "005930")
+	require.NoError(t, err)
+	res, err := c.Registration.Division(context.Background(), registration.Params{CorpCode: corp, BgnDe: "20180101", EndDe: "20241231"})
+	if errors.Is(err, ErrNoData) {
+		t.Skip("해당 기간 분할 증권신고서 데이터 없음")
+	}
+	require.NoError(t, err)
+	require.NotNil(t, res)
+	for _, it := range res.General {
+		require.NotEmpty(t, it.RceptNo)
+	}
+}
+
+func TestIntegration_StockExchangeTransferRegistration(t *testing.T) {
+	c, err := NewClientFromEnv(WithCorpCodeCacheDir(t.TempDir()))
+	require.NoError(t, err)
+	corp, err := c.ResolveCorpCode(context.Background(), "005930")
+	require.NoError(t, err)
+	res, err := c.Registration.StockExchangeTransfer(context.Background(), registration.Params{CorpCode: corp, BgnDe: "20180101", EndDe: "20241231"})
+	if errors.Is(err, ErrNoData) {
+		t.Skip("해당 기간 주식의포괄적교환·이전 증권신고서 데이터 없음")
+	}
+	require.NoError(t, err)
+	require.NotNil(t, res)
+	for _, it := range res.General {
+		require.NotEmpty(t, it.RceptNo)
+	}
+}

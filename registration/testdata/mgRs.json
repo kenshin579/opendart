@@ -1,0 +1,15 @@
+{
+  "status": "000",
+  "message": "정상",
+  "group": [
+    {"title": "일반사항", "list": [
+      {"rcept_no": "20230410000111", "corp_cls": "Y", "corp_code": "00126380", "corp_name": "테스트합병", "stn": "흡수합병", "bddd": "2023년 04월 10일", "ctrd": "2023년 04월 10일", "gmtsck_shddstd": "2023년 05월 10일", "ap_gmtsck": "2023년 06월 10일", "aprskh_pd_bgd": "2023년 06월 10일", "aprskh_pd_edd": "2023년 06월 30일", "aprskh_prc": "65,000", "mgdt_etc": "2023년 07월 15일", "rt_vl": "1:0.5", "exevl_int": "삼일회계법인", "grtmn_etc": "-", "rpt_rcpn": "20230410003707"}
+    ]},
+    {"title": "발행증권", "list": [
+      {"rcept_no": "20230410000111", "corp_cls": "Y", "corp_code": "00126380", "corp_name": "테스트합병", "kndn": "기명식 보통주", "cnt": "1,000,000", "fv": "5,000", "slprc": "65,000", "slta": "65,000,000,000"}
+    ]},
+    {"title": "당사회사에관한사항", "list": [
+      {"rcept_no": "20230410000111", "corp_cls": "Y", "corp_code": "00126380", "corp_name": "테스트합병", "cmpnm": "합병상대회사", "sen": "소멸회사", "tast": "500,000,000,000", "cpt": "50,000,000,000", "isstk_knd": "기명식 보통주", "isstk_cnt": "2,000,000"}
+    ]}
+  ]
+}
