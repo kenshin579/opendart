@@ -57,6 +57,8 @@ func TestCreditorBankManagementStart(t *testing.T) {
 }
 
 func TestCreditorBankManagementStop(t *testing.T) {
+	// fixture(bnkMngtPcsp.json)는 합성 데이터 — 채권은행 관리절차 중단은 매우 드물어 실 주요사항보고서
+	// 데이터를 찾지 못함. 필드 스키마는 docs + 실 sibling(bnkMngtPcbg)과 동일.
 	c := newTestClient(t, map[string]string{"/api/bnkMngtPcsp.json": "bnkMngtPcsp.json"})
 	items, err := c.CreditorBankManagementStop(context.Background(), MaterialParams{CorpCode: "00245481", BgnDe: "20200101", EndDe: "20201231"})
 	require.NoError(t, err)
