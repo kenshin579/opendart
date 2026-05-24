@@ -192,3 +192,33 @@ func TestIntegration_TreasuryStockAcquisition(t *testing.T) {
 		require.NotEmpty(t, it.RceptNo)
 	}
 }
+
+func TestIntegration_BusinessAcquisition(t *testing.T) {
+	c, err := NewClientFromEnv(WithCorpCodeCacheDir(t.TempDir()))
+	require.NoError(t, err)
+	corp, err := c.ResolveCorpCode(context.Background(), "005930")
+	require.NoError(t, err)
+	items, err := c.Material.BusinessAcquisition(context.Background(), material.MaterialParams{CorpCode: corp, BgnDe: "20200101", EndDe: "20241231"})
+	if errors.Is(err, ErrNoData) {
+		t.Skip("해당 기간 영업양수 데이터 없음")
+	}
+	require.NoError(t, err)
+	for _, it := range items {
+		require.NotEmpty(t, it.RceptNo)
+	}
+}
+
+func TestIntegration_OtherCorpStockAcquisition(t *testing.T) {
+	c, err := NewClientFromEnv(WithCorpCodeCacheDir(t.TempDir()))
+	require.NoError(t, err)
+	corp, err := c.ResolveCorpCode(context.Background(), "005930")
+	require.NoError(t, err)
+	items, err := c.Material.OtherCorpStockAcquisition(context.Background(), material.MaterialParams{CorpCode: corp, BgnDe: "20200101", EndDe: "20241231"})
+	if errors.Is(err, ErrNoData) {
+		t.Skip("해당 기간 타법인주식 양수 데이터 없음")
+	}
+	require.NoError(t, err)
+	for _, it := range items {
+		require.NotEmpty(t, it.RceptNo)
+	}
+}
