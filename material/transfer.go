@@ -310,3 +310,53 @@ type OtherCorpStockTransferItem struct {
 func (c *Client) OtherCorpStockTransfer(ctx context.Context, p MaterialParams) ([]OtherCorpStockTransferItem, error) {
 	return httpclient.GetList[OtherCorpStockTransferItem](ctx, c.http, "/api/otcprStkInvscrTrfDecsn.json", p.toMap())
 }
+
+// StockRelatedBondAcquisitionItem 은 주권 관련 사채권 양수 결정 (stkrtbdInhDecsn) 한 건.
+type StockRelatedBondAcquisitionItem struct {
+	RceptNo         string `json:"rcept_no"`           // 접수번호
+	CorpCls         string `json:"corp_cls"`           // 법인구분 (Y/K/N/E)
+	CorpCode        string `json:"corp_code"`          // 고유번호
+	CorpName        string `json:"corp_name"`          // 회사명
+	StkrtbdKndn     string `json:"stkrtbd_kndn"`       // 주권 관련 사채권의 종류
+	Tm              string `json:"tm"`                 // 주권 관련 사채권의 종류(회차)
+	Knd             string `json:"knd"`                // 주권 관련 사채권의 종류(종류)
+	BdiscmpCmpnm    string `json:"bdiscmp_cmpnm"`      // 사채권 발행회사(회사명)
+	BdiscmpNt       string `json:"bdiscmp_nt"`         // 사채권 발행회사(국적)
+	BdiscmpRp       string `json:"bdiscmp_rp"`         // 사채권 발행회사(대표자)
+	BdiscmpCpt      string `json:"bdiscmp_cpt"`        // 사채권 발행회사(자본금(원))
+	BdiscmpRlCmpn   string `json:"bdiscmp_rl_cmpn"`    // 사채권 발행회사(회사와 관계)
+	BdiscmpTisstk   string `json:"bdiscmp_tisstk"`     // 사채권 발행회사(발행주식 총수(주))
+	BdiscmpMbsn     string `json:"bdiscmp_mbsn"`       // 사채권 발행회사(주요사업)
+	L6mTpaNstkaqAtn string `json:"l6m_tpa_nstkaq_atn"` // 최근 6월 이내 제3자 배정에 의한 신주취득 여부
+	InhdtlBdFta     string `json:"inhdtl_bd_fta"`      // 양수내역(사채의 권면(전자등록)총액(원))
+	InhdtlInhprc    string `json:"inhdtl_inhprc"`      // 양수내역(양수금액(원)(A))
+	InhdtlTast      string `json:"inhdtl_tast"`        // 양수내역(총자산(원)(B))
+	InhdtlTastVs    string `json:"inhdtl_tast_vs"`     // 양수내역(총자산대비(%)(A/B))
+	InhdtlEcpt      string `json:"inhdtl_ecpt"`        // 양수내역(자기자본(원)(C))
+	InhdtlEcptVs    string `json:"inhdtl_ecpt_vs"`     // 양수내역(자기자본대비(%)(A/C))
+	InhPp           string `json:"inh_pp"`             // 양수목적
+	InhPrd          string `json:"inh_prd"`            // 양수예정일자
+	DlptnCmpnm      string `json:"dlptn_cmpnm"`        // 거래상대방(회사명/성명)
+	DlptnCpt        string `json:"dlptn_cpt"`          // 거래상대방(자본금(원))
+	DlptnMbsn       string `json:"dlptn_mbsn"`         // 거래상대방(주요사업)
+	DlptnHoadd      string `json:"dlptn_hoadd"`        // 거래상대방(본점소재지(주소))
+	DlptnRlCmpn     string `json:"dlptn_rl_cmpn"`      // 거래상대방(회사와의 관계)
+	DlPym           string `json:"dl_pym"`             // 거래대금지급
+	ExevlAtn        string `json:"exevl_atn"`          // 외부평가에 관한 사항(외부평가 여부)
+	ExevlBsRs       string `json:"exevl_bs_rs"`        // 외부평가에 관한 사항(근거 및 사유)
+	ExevlIntn       string `json:"exevl_intn"`         // 외부평가에 관한 사항(외부평가기관의 명칭)
+	ExevlPd         string `json:"exevl_pd"`           // 외부평가에 관한 사항(외부평가 기간)
+	ExevlOp         string `json:"exevl_op"`           // 외부평가에 관한 사항(외부평가 의견)
+	Bddd            string `json:"bddd"`               // 이사회결의일(결정일)
+	OdAAtT          string `json:"od_a_at_t"`          // 사외이사 참석여부(참석(명))
+	OdAAtB          string `json:"od_a_at_b"`          // 사외이사 참석여부(불참(명))
+	AdtAAtn         string `json:"adt_a_atn"`          // 감사(사외이사가 아닌 감사위원) 참석여부
+	FtcSttAtn       string `json:"ftc_stt_atn"`        // 공정거래위원회 신고대상 여부
+	PoptCtrAtn      string `json:"popt_ctr_atn"`       // 풋옵션 등 계약 체결여부
+	PoptCtrCn       string `json:"popt_ctr_cn"`        // 계약내용
+}
+
+// StockRelatedBondAcquisition 은 주권 관련 사채권 양수 결정(주요사항보고서)을 조회한다.
+func (c *Client) StockRelatedBondAcquisition(ctx context.Context, p MaterialParams) ([]StockRelatedBondAcquisitionItem, error) {
+	return httpclient.GetList[StockRelatedBondAcquisitionItem](ctx, c.http, "/api/stkrtbdInhDecsn.json", p.toMap())
+}

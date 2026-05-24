@@ -85,3 +85,16 @@ func TestOtherCorpStockTransfer(t *testing.T) {
 	assert.Equal(t, "한영회계법인", got.ExevlIntn)
 	assert.Equal(t, "미해당", got.FtcSttAtn)
 }
+
+func TestStockRelatedBondAcquisition(t *testing.T) {
+	c := newTestClient(t, map[string]string{"/api/stkrtbdInhDecsn.json": "stkrtbdInhDecsn.json"})
+	items, err := c.StockRelatedBondAcquisition(context.Background(), MaterialParams{CorpCode: "00126380", BgnDe: "20230101", EndDe: "20231231"})
+	require.NoError(t, err)
+	require.Len(t, items, 1)
+	got := items[0]
+	assert.Equal(t, "20231010000777", got.RceptNo)
+	assert.Equal(t, "전환사채", got.StkrtbdKndn)
+	assert.Equal(t, "20,000,000,000", got.InhdtlBdFta)
+	assert.Equal(t, "삼일회계법인", got.ExevlIntn)
+	assert.Equal(t, "미해당", got.FtcSttAtn)
+}
