@@ -36,3 +36,17 @@ func TestDivision(t *testing.T) {
 	assert.Equal(t, "0.7:0.3", res.General[0].RtVl)
 	assert.Equal(t, "분할신설회사", res.PartyCompanies[0].Cmpnm)
 }
+
+func TestStockExchangeTransfer(t *testing.T) {
+	c := newTestClient(t, "extrRs.json")
+	res, err := c.StockExchangeTransfer(context.Background(), Params{CorpCode: "00126380", BgnDe: "20230101", EndDe: "20231231"})
+	require.NoError(t, err)
+	require.NotNil(t, res)
+	require.Len(t, res.General, 1)
+	require.Len(t, res.IssuedSecurities, 1)
+	require.Len(t, res.PartyCompanies, 1)
+	assert.Equal(t, "20230610000333", res.General[0].RceptNo)
+	assert.Equal(t, "주식의 포괄적 교환", res.General[0].Stn)
+	assert.Equal(t, "1:0.8", res.General[0].RtVl)
+	assert.Equal(t, "완전자회사", res.PartyCompanies[0].Cmpnm)
+}

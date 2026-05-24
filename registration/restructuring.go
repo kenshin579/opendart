@@ -93,6 +93,37 @@ func (c *Client) Division(ctx context.Context, p Params) (*DivisionRegistration,
 	return out, nil
 }
 
+// StockExchangeTransferRegistration 은 주식의포괄적교환·이전 증권신고서(extrRs)의 그룹별 항목.
+type StockExchangeTransferRegistration struct {
+	General          []RestructuringGeneralItem        // 일반사항
+	IssuedSecurities []RestructuringIssuedSecurityItem // 발행증권
+	PartyCompanies   []RestructuringPartyCompanyItem   // 당사회사에관한사항
+}
+
+// StockExchangeTransfer 는 주식의포괄적교환·이전 증권신고서(DS006)를 조회한다.
+func (c *Client) StockExchangeTransfer(ctx context.Context, p Params) (*StockExchangeTransferRegistration, error) {
+	groups, err := httpclient.GetGroups(ctx, c.http, "/api/extrRs.json", p.toMap())
+	if err != nil {
+		return nil, err
+	}
+	out := &StockExchangeTransferRegistration{}
+	for _, g := range groups {
+		var derr error
+		switch g.Title {
+		case "일반사항":
+			derr = json.Unmarshal(g.List, &out.General)
+		case "발행증권":
+			derr = json.Unmarshal(g.List, &out.IssuedSecurities)
+		case "당사회사에관한사항":
+			derr = json.Unmarshal(g.List, &out.PartyCompanies)
+		}
+		if derr != nil {
+			return nil, derr
+		}
+	}
+	return out, nil
+}
+
 // Merger 는 합병 증권신고서(DS006)를 조회한다.
 func (c *Client) Merger(ctx context.Context, p Params) (*MergerRegistration, error) {
 	groups, err := httpclient.GetGroups(ctx, c.http, "/api/mgRs.json", p.toMap())
